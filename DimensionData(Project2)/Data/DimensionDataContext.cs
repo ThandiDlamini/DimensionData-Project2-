@@ -136,7 +136,7 @@ namespace DimensionData_Project2_.Data
 
             modelBuilder.Entity<Project2Dataset>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(x=>x.EmployeeNumber);
 
                 entity.ToTable("project 2 dataset");
 

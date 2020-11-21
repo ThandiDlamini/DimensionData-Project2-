@@ -20,8 +20,26 @@ namespace DimensionData_Project2_.Controllers
         }
 
         // GET: Project2Dataset
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder, string CurrentFilter, string searchString, int? pageNumber)
         {
+            ViewData["CurrentSort"] = sortOrder;
+            ViewData["EmpNrSortParam"] = sortOrder == "empnr_desc" ? "EmpNr" : "empnr_desc";
+            ViewData["EmpAgeSortParam"] = sortOrder == "empage_desc" ? "EmpAge" : "empage_desc";
+            ViewData["JobLevelSortParam"] = sortOrder == "joblevel_desc" ? "JobLevel" : "joblevel_desc";
+            ViewData["JobRoleSortParam"] = sortOrder == "jobrole_desc" ? "JobRole" : "jobrole_desc";
+            ViewData["DepSortParam"] = sortOrder == "dep_desc" ? "Dep" : "dep_desc";
+            ViewData["GenderSortParam"] = sortOrder == "gender_desc" ? "Gender" : "gender_desc";
+
+            ViewData["CurrentFilter"] = searchString;
+
+            if(searchString != null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                searchString = CurrentFilter;
+            }
             return View(await _context.Project2Dataset.ToListAsync());
         }
 

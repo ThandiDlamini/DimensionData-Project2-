@@ -24,7 +24,7 @@ namespace DimensionData_Project2_.Controllers
         }
 
         public IActionResult Privacy()
-        {
+        { 
             return View();
         }
         public IActionResult Data()
